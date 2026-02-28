@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom scrollbar for agent logs */
+.agent-log::-webkit-scrollbar {
+  width: 4px;
+}
+.agent-log::-webkit-scrollbar-track {
+  background: transparent;
+}
+.agent-log::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 2px;
+}
+
+/* Markdown styles */
+.markdown h1 { @apply text-2xl font-bold mb-4 text-white; }
+.markdown h2 { @apply text-xl font-semibold mb-3 text-white; }
+.markdown h3 { @apply text-lg font-semibold mb-2 text-gray-200; }
+.markdown p  { @apply mb-3 text-gray-300 leading-relaxed; }
+.markdown ul { @apply mb-3 ml-4 list-disc text-gray-300 space-y-1; }
+.markdown ol { @apply mb-3 ml-4 list-decimal text-gray-300 space-y-1; }
+.markdown li { @apply leading-relaxed; }
+.markdown strong { @apply font-semibold text-white; }
+.markdown em { @apply italic text-gray-300; }
+.markdown code { @apply bg-gray-800 text-emerald-400 px-1.5 py-0.5 rounded text-sm font-mono; }
+.markdown pre { @apply bg-gray-800 rounded-lg p-4 mb-3 overflow-x-auto; }
+.markdown pre code { @apply bg-transparent p-0; }
+.markdown blockquote { @apply border-l-2 border-gray-600 pl-4 italic text-gray-400 mb-3; }
