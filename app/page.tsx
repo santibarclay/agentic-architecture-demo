@@ -82,7 +82,7 @@ function ModelSelector({
 
 function StatusBadge({ status }: { status: AgentStatus }) {
   if (status === 'esperando')
-    return <span className="text-[10px] text-gray-600 font-medium uppercase tracking-wider">En espera</span>;
+    return <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">En espera</span>;
   if (status === 'activo')
     return (
       <span className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-yellow-400">
@@ -103,19 +103,19 @@ function StatusBadge({ status }: { status: AgentStatus }) {
 function LogEntry({ line }: { line: LogLine }) {
   switch (line.kind) {
     case 'info':
-      return <p className="text-gray-300 text-sm leading-relaxed">{line.text}</p>;
+      return <p className="text-gray-100 text-sm leading-relaxed">{line.text}</p>;
 
     case 'plan':
       return (
         <div className="flex gap-2 text-sm">
-          <span className="text-gray-500 shrink-0">{line.label}:</span>
+          <span className="text-gray-400 shrink-0">{line.label}:</span>
           <span className="text-white font-medium">{line.value}</span>
         </div>
       );
 
     case 'thinking':
       return (
-        <p className="text-gray-500 text-xs italic leading-relaxed">
+        <p className="text-gray-400 text-xs italic leading-relaxed">
           {line.text.length > 150 ? line.text.slice(0, 150) + '…' : line.text}
         </p>
       );
@@ -135,7 +135,7 @@ function LogEntry({ line }: { line: LogLine }) {
       return (
         <div className="pl-2 border-l-2 border-gray-700 text-xs text-gray-400 leading-relaxed">
           {line.count !== undefined && (
-            <span className="text-gray-500">{line.count} resultado{line.count !== 1 ? 's' : ''}: </span>
+            <span className="text-gray-400">{line.count} resultado{line.count !== 1 ? 's' : ''}: </span>
           )}
           {line.preview}
         </div>
@@ -199,18 +199,18 @@ function AgentCard({
                 <h3 className={`font-bold text-base ${accentText}`}>{title}</h3>
                 <StatusBadge status={status} />
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">{role}</p>
+              <p className="text-xs text-gray-400 mt-0.5">{role}</p>
             </div>
           </div>
           <div className="text-right shrink-0">
-            <p className="text-[10px] text-gray-600 uppercase tracking-wider">Modelo</p>
+            <p className="text-[10px] text-gray-400 uppercase tracking-wider">Modelo</p>
             <p className="text-xs text-gray-400 mt-0.5">{modelLabel}</p>
           </div>
         </div>
 
         {/* Instrucciones del sistema — siempre visibles */}
         <details className="mt-3">
-          <summary className="text-[10px] text-gray-600 cursor-pointer hover:text-gray-400 uppercase tracking-wider select-none">
+          <summary className="text-[10px] text-gray-400 cursor-pointer hover:text-gray-400 uppercase tracking-wider select-none">
             Ver instrucciones del sistema
           </summary>
           <div className="mt-2 bg-gray-800 rounded-lg px-3 py-2.5 text-[11px] text-gray-400 leading-relaxed font-mono whitespace-pre-wrap">
@@ -221,7 +221,7 @@ function AgentCard({
         {/* Sub-agentes conocidos (solo para el Supervisor) */}
         {knownAgents && (
           <div className="mt-3 flex gap-2 flex-wrap">
-            <span className="text-[10px] text-gray-600 self-center">Conoce a:</span>
+            <span className="text-[10px] text-gray-400 self-center">Conoce a:</span>
             {knownAgents.map((a) => (
               <span
                 key={a}
@@ -240,7 +240,7 @@ function AgentCard({
         className="agent-log overflow-y-auto px-5 py-4 space-y-2.5 min-h-[80px] max-h-[220px]"
       >
         {log.length === 0 ? (
-          <p className="text-xs text-gray-700 italic">Esperando instrucciones…</p>
+          <p className="text-xs text-gray-400 italic">Esperando instrucciones…</p>
         ) : (
           log.map((line, i) => <LogEntry key={i} line={line} />)
         )}
@@ -266,12 +266,12 @@ function HandoffArrow({
       <div className="w-full border border-gray-700 bg-gray-900 rounded-xl overflow-hidden">
         <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-800 bg-gray-800/50">
           <span className={`text-xs font-bold ${fromColor}`}>{from}</span>
-          <span className="text-gray-600 text-xs">→</span>
+          <span className="text-gray-400 text-xs">→</span>
           <span className={`text-xs font-bold ${toColor}`}>{to}</span>
-          <span className="ml-auto text-[10px] text-gray-600 uppercase tracking-wider">Instrucción</span>
+          <span className="ml-auto text-[10px] text-gray-400 uppercase tracking-wider">Instrucción</span>
         </div>
         <div className="px-4 py-3">
-          <p className="text-xs text-gray-300 leading-relaxed font-mono">{instructions}</p>
+          <p className="text-xs text-gray-100 leading-relaxed font-mono">{instructions}</p>
         </div>
       </div>
 
@@ -483,13 +483,13 @@ export default function Home() {
             <h1 className="text-base font-bold text-white tracking-tight">
               Demo de Arquitectura Agéntica
             </h1>
-            <p className="text-xs text-gray-600 mt-0.5">
+            <p className="text-xs text-gray-400 mt-0.5">
               Un supervisor coordina dos sub-agentes especializados en tiempo real
             </p>
           </div>
           <a
             href="https://github.com"
-            className="text-xs text-gray-600 hover:text-gray-300 transition-colors border border-gray-800 px-3 py-1.5 rounded-lg"
+            className="text-xs text-gray-400 hover:text-gray-300 transition-colors border border-gray-800 px-3 py-1.5 rounded-lg"
           >
             GitHub
           </a>
@@ -524,7 +524,7 @@ export default function Home() {
                   type="button"
                   onClick={() => setQuestion(ex)}
                   disabled={running}
-                  className="text-xs px-3 py-1.5 rounded-full border border-gray-800 text-gray-500 hover:border-gray-600 hover:text-gray-300 transition-colors disabled:opacity-40"
+                  className="text-xs px-3 py-1.5 rounded-full border border-gray-700 text-gray-200 hover:border-gray-500 hover:text-white transition-colors disabled:opacity-40"
                 >
                   {ex}
                 </button>
@@ -581,7 +581,7 @@ export default function Home() {
         {/* ── Cómo funciona (estado inicial) ── */}
         {!pipelineVisible && (
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-600 mb-5">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5">
               Cómo funciona
             </h2>
             <div className="flex flex-col gap-0">
@@ -590,9 +590,9 @@ export default function Home() {
                 <div className="flex items-center gap-2.5 mb-2">
                   <span className="text-xl">🧠</span>
                   <span className="font-semibold text-purple-400">Supervisor</span>
-                  <span className="ml-auto text-[10px] text-gray-600 uppercase tracking-wider">Agente orquestador</span>
+                  <span className="ml-auto text-[10px] text-gray-400 uppercase tracking-wider">Agente orquestador</span>
                 </div>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-200 leading-relaxed">
                   Recibe tu pregunta, decide qué investigar y en qué formato presentar la respuesta.
                   Conoce a los dos sub-agentes disponibles y decide cuándo y cómo activarlos.
                 </p>
@@ -601,7 +601,7 @@ export default function Home() {
               {/* Flecha */}
               <div className="flex flex-col items-center py-1">
                 <div className="w-px h-5 bg-gray-800" />
-                <div className="text-gray-700 text-xs">delega tarea</div>
+                <div className="text-gray-200 text-xs">delega tarea</div>
                 <div className="w-px h-5 bg-gray-800" />
               </div>
 
@@ -610,9 +610,9 @@ export default function Home() {
                 <div className="flex items-center gap-2.5 mb-2">
                   <span className="text-xl">🔍</span>
                   <span className="font-semibold text-emerald-400">Researcher</span>
-                  <span className="ml-auto text-[10px] text-gray-600 uppercase tracking-wider">Sub-agente con herramientas</span>
+                  <span className="ml-auto text-[10px] text-gray-400 uppercase tracking-wider">Sub-agente con herramientas</span>
                 </div>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-200 leading-relaxed">
                   Usa herramientas reales para buscar en Wikipedia. Ejecuta un bucle autónomo:{' '}
                   <code className="text-xs bg-gray-800 text-emerald-400 px-1.5 py-0.5 rounded">search_wikipedia</code> →{' '}
                   <code className="text-xs bg-gray-800 text-emerald-400 px-1.5 py-0.5 rounded">get_wikipedia_article</code> → repite hasta tener suficiente información.
@@ -622,7 +622,7 @@ export default function Home() {
               {/* Flecha */}
               <div className="flex flex-col items-center py-1">
                 <div className="w-px h-5 bg-gray-800" />
-                <div className="text-gray-700 text-xs">devuelve hallazgos → supervisor delega síntesis</div>
+                <div className="text-gray-200 text-xs">devuelve hallazgos → supervisor delega síntesis</div>
                 <div className="w-px h-5 bg-gray-800" />
               </div>
 
@@ -631,9 +631,9 @@ export default function Home() {
                 <div className="flex items-center gap-2.5 mb-2">
                   <span className="text-xl">✨</span>
                   <span className="font-semibold text-amber-400">Synthesizer</span>
-                  <span className="ml-auto text-[10px] text-gray-600 uppercase tracking-wider">Sub-agente redactor</span>
+                  <span className="ml-auto text-[10px] text-gray-400 uppercase tracking-wider">Sub-agente redactor</span>
                 </div>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-200 leading-relaxed">
                   Recibe los datos en bruto del Researcher (a través del Supervisor) y los convierte
                   en una respuesta clara y bien formateada en Markdown, adaptada al formato indicado.
                 </p>
@@ -645,7 +645,7 @@ export default function Home() {
         {/* ── Pipeline en vivo ── */}
         {pipelineVisible && (
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-600 mb-5">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5">
               Ejecución del pipeline
             </h2>
 
@@ -723,7 +723,7 @@ export default function Home() {
         {/* ── Respuesta final ── */}
         {finalAnswer && (
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-600 mb-4">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">
               Respuesta final
             </h2>
             <div className="rounded-xl border border-gray-700 bg-gray-900 px-6 py-5">
@@ -737,9 +737,9 @@ export default function Home() {
 
       {/* Pie de página */}
       <footer className="border-t border-gray-800 px-6 py-4 text-center">
-        <p className="text-xs text-gray-700">
+        <p className="text-xs text-gray-400">
           Open source · Next.js + API de Claude ·{' '}
-          <a href="https://docs.anthropic.com" className="hover:text-gray-500 transition-colors underline">
+          <a href="https://docs.anthropic.com" className="hover:text-gray-400 transition-colors underline">
             Documentación de Anthropic
           </a>
         </p>
